@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #77ebef;
+        }
+
+        .order-form {
+            max-width: 700px;
+            max-height: 90%;
+            margin: 0 auto;
+            padding: 100px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: -20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select,
+        input[type="number"],
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 90%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        select {
+            height: 36px;
+        }
+
+        .left-side {
+            float: left;
+            width: 60%;
+        }
+
+        .right-side {
+            float: right;
+            width: 40%;
+            text-align: right;
+        }
+
+        .right-side label {
+            display: inline-block;
+        }
+
+        .button-group {
+            text-align: right;
+            margin-top: 40px;
+        }
+
+
+        input[type="submit"],
+        .back-link {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link {
+            margin-left: 10px;
+            background-color: #555;
+        }
+
+        input[type="submit"]:hover,
+        .back-link:hover {
+            background-color: #a04545;
+        }
+
+        .right-side output {
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .order-form {
+                padding: 0;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            
+            h1 {
+                margin-top: 20px;
+            }
+
+
+
+            select,
+        input[type="number"],
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 90%;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        label {
+            display: block;
+            margin-left: 5px;
+            font-weight: bold;
+            color: #555;
+            margin-right: 5px;
+        }
+
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="order-form">
+        <h1>Arthropods Order Form</h1>
+
+        <form name="submit-to-google-sheet" id="order-form">
+                <div class="left-side">
+                    <label for="product">Product:</label>
+                    <select name="product" id="product">
+                        <option value="">Select a product</option>
+                        <option value="Yellow Pad">Yellow Pad</option>
+                        <option value="Ballpen">Ballpen</option>
+                        <option value="Bond Paper">Bond Paper</option>
+                        <option value="Colored Paper">Colored Paper</option>
+                        <option value="White Folder">White Folder</option>
+                        <option value="Tissue">Tissue</option>
+                        <option value="Pencil">Pencil</option>
+                        <option value="Black Marker">Black Marker</option>
+                        <option value="Brown Envelope">Brown Envelope</option>
+                        <option value="Correction Tape">Correction Tape</option>
+                        <option value="Water">Water 350ml</option>
+                        <option value="Brownies">Brownies</option>
+                    </select>
+                    <br>
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" name="quantity" id="quantity" min="1">
+                    <br>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name">
+                    <br>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email">
+                    <br>
+                    <label for="address">Address:</label>
+                    <input type="text" name="address" id="address">
+                    <br>
+                    <label for="phone">Phone:</label>
+                    <input type="tel" name="phone" id="phone">
+                    <br>
+                </div>
+    
+                <div class="right-side">
+                    <label for="payment-method">Payment Method:</label>
+                    <select name="payment" id="payment-method">
+                        <option value="Gcash">Gcash</option>
+                        <option value="cod">Cash On Delivery</option>
+                    </select>
+                    <br>
+                    <label for="unit-price">Unit Price:</label>
+                    <input type="number" name="unit-price" id="unit-price" readonly>
+                    <br>
+                    <label for="total-price">Total Price:</label>
+                    <input type="number" name="total-price" id="total-price" readonly>
+                    <br>
+                </div>
+    
+                <div class="button-group">
+                    <input type="submit" value="Place Order">
+                    <br> <br> <br> <br> <br> <br> <br> <br> 
+                    <a href="index.html" class="back-link">Back to Store</a>
+                </div>
+            </form>
+        
+    </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const productSelect = document.getElementById('product');
+            const quantityInput = document.getElementById('quantity');
+            const unitPriceOutput = document.getElementById('unit-price');
+            const totalPriceOutput = document.getElementById('total-price');
+            const form = document.getElementById('order-form');
+
+            const prices = {
+                'Yellow Pad': 25,
+                'Ballpen': 10,
+                'Bond Paper': 2,
+                'Colored Paper': 3,
+                'White Folder': 25,
+                'Tissue': 25,
+                'Pencil': 10,
+                'Black Marker': 25,
+                'Brown Envelope': 10,
+                'Correction Tape': 35,
+                'Water': 10,
+                'Brownies': 5
+            };
+
+            function updatePrice() {
+                const product = productSelect.value;
+                const quantity = parseInt(quantityInput.value);
+
+                if (prices.hasOwnProperty(product) && !isNaN(quantity) && quantity > 0) {
+                    const unitPrice = prices[product];
+                    const totalPrice = unitPrice * quantity;
+                    unitPriceOutput.value = unitPrice.toFixed(2);
+                    totalPriceOutput.value = totalPrice.toFixed(2);
+
+                } else {
+                    unitPriceOutput.textContent = '';
+                    totalPriceOutput.textContent = '';
+                }
+            }
+
+            function showAlert(event) {
+            event.preventDefault();
+
+            let message = '';
+            const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], select');
+            let allFieldsFilled = true;
+
+            inputs.forEach(input => {
+                if (input.value !== '') {
+                const label = form.querySelector(`label[for="${input.id}"]`).textContent;
+                message += `${label}: ${input.value}\n`;
+                } else {
+                allFieldsFilled = false;
+                }
+            });
+
+            const totalPrice = totalPriceOutput.value;
+            if (allFieldsFilled) {
+                const paymentMethod = document.getElementById('payment-method').value;
+                let redirectLink = '';
+
+                if (paymentMethod === 'Gcash') {
+                redirectLink = 'gcash.html';
+                } else if (paymentMethod === 'cod') {
+                redirectLink = 'cod.html';
+                }
+
+                if (confirm(`Are you sure you want to submit the order?\n\n${message}\nTotal Price: ${totalPrice}`)) {
+
+                fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                    .then(response => {
+                    console.log('Success!', response);
+                    window.location.href = redirectLink;
+                    })
+                    .catch(error => {
+                    console.error('Error!', error.message);
+                    window.location.href = redirectLink;
+                    });
+                }
+                } else {
+                    alert('Please fill in all the required fields.');
+                }
+            }
+
+
+            productSelect.addEventListener('change', updatePrice);
+            quantityInput.addEventListener('input', updatePrice);
+            form.addEventListener('submit', showAlert);
+        });
+    </script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbynUJ9-jFte4cygGnbDXbtYJ9Cnc6mKGgHD-0FEOw4AV3PmjMF9005cFTdpOUp51gZV/exec'
+    const form = document.forms['submit-to-google-sheet']
+  
+    form.removeEventListener('submit', () => {
+                e.preventDefault();
+                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                    .then(response => console.log('Success!', response))
+                    .catch(error => console.error('Error!', error.message));
+            });
+        
+  </script>
+</body>
+</html>
